@@ -157,6 +157,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-this指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/06/this%E6%8C%87%E9%92%88/">C++类中的this指针</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/06/this%E6%8C%87%E9%92%88/" class="archive-article-date">
+  	<time datetime="2019-11-06T14:13:43.047Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如题：下面程序段包含4个函数，其中具有隐含this指针的是()</p>
+<p>int <font color=red>f1</font>();</p>
+<p>class T</p>
+<p>{</p>
+<p>public :static int <font color=red>f2</font>();</p>
+<p>private :friend int <font color=red>f3</font>();</p>
+<p>protected :int <font color=red>f4</font>();</p>
+<p>}</p>
+<p>正确答案：f4</p>
+<p>解析：静态成员函数属于整个类所拥有，没有this指针</p>
+<p>友元函数不是这个类的成员，没有this指针</p>
+<p>只有<font color=red>类的非静态成员函数</font>有this指针</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">this指针</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/06/this%E6%8C%87%E9%92%88/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-静态博客搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -414,6 +503,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">demo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
             
             <div class="clearfix"></div>
