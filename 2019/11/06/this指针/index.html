@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>C++类中的this指针 | 阿木木</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如题：下面程序段包含4个函数，其中具有隐含this指针的是() int f1(); class T { public :static int f2(); private :friend int f3(); protected :int f4(); } 正确答案：f4 解析：静态成员函数属于整个类所拥有，没有this指针 友元函数不是这个类的成员，没有this指针 只有类的非静态成员函数有this指">
+  <meta name="description" content="如题：下面程序段包含4个函数，其中具有隐含this指针的是() int f1(); class T { public :static int f2(); private :friend int f3(); protected :int f4(); }">
 <meta name="keywords" content="this指针,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++类中的this指针">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;this%E6%8C%87%E9%92%88&#x2F;index.html">
 <meta property="og:site_name" content="阿木木">
-<meta property="og:description" content="如题：下面程序段包含4个函数，其中具有隐含this指针的是() int f1(); class T { public :static int f2(); private :friend int f3(); protected :int f4(); } 正确答案：f4 解析：静态成员函数属于整个类所拥有，没有this指针 友元函数不是这个类的成员，没有this指针 只有类的非静态成员函数有this指">
+<meta property="og:description" content="如题：下面程序段包含4个函数，其中具有隐含this指针的是() int f1(); class T { public :static int f2(); private :friend int f3(); protected :int f4(); }">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-06T14:26:37.355Z">
+<meta property="og:updated_time" content="2019-11-06T14:33:14.101Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="阿木木" type="application/atom+xml">
@@ -185,6 +185,8 @@
 <p>private :friend int <font color=red>f3</font>();</p>
 <p>protected :int <font color=red>f4</font>();</p>
 <p>}</p>
+<a id="more"></a>
+
 <p>正确答案：f4</p>
 <p>解析：静态成员函数属于整个类所拥有，没有this指针</p>
 <p>友元函数不是这个类的成员，没有this指针</p>
