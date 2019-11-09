@@ -6,18 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++类中的this指针 | 阿木木</title>
+  <title>SSD目标检测 | 阿木木</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如题：下面程序段包含4个函数，其中具有隐含this指针的是() int f1(); class T { public :static int f2(); private :friend int f3(); protected :int f4(); }">
-<meta name="keywords" content="C++,this指针">
+  <meta name="description" content="论文地址:https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1512.02325 源码:https:&#x2F;&#x2F;github.com&#x2F;weiliu89&#x2F;caffe&#x2F;tree&#x2F;ssd">
+<meta name="keywords" content="SSD,目标检测,深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++类中的this指针">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;this%E6%8C%87%E9%92%88&#x2F;index.html">
+<meta property="og:title" content="SSD目标检测">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#x2F;index.html">
 <meta property="og:site_name" content="阿木木">
-<meta property="og:description" content="如题：下面程序段包含4个函数，其中具有隐含this指针的是() int f1(); class T { public :static int f2(); private :friend int f3(); protected :int f4(); }">
+<meta property="og:description" content="论文地址:https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1512.02325 源码:https:&#x2F;&#x2F;github.com&#x2F;weiliu89&#x2F;caffe&#x2F;tree&#x2F;ssd">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-06T14:33:14.101Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#x2F;2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#x2F;4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#x2F;5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#x2F;6.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#x2F;7.png">
+<meta property="og:updated_time" content="2019-11-09T06:06:52.259Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#x2F;1.png">
   
     <link rel="alternative" href="/atom.xml" title="阿木木" type="application/atom+xml">
   
@@ -157,40 +165,83 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-this指针" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SSD目标检测" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++类中的this指针
+      SSD目标检测
     </h1>
   
 
         
-        <a href="/2019/11/06/this%E6%8C%87%E9%92%88/" class="archive-article-date">
-  	<time datetime="2019-11-06T14:13:43.047Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-06</time>
+        <a href="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" class="archive-article-date">
+  	<time datetime="2019-11-09T04:44:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如题：下面程序段包含4个函数，其中具有隐含this指针的是()</p>
-<p>int <font color="red">f1</font>();</p>
-<p>class T</p>
-<p>{</p>
-<p>public :static int <font color="red">f2</font>();</p>
-<p>private :friend int <font color="red">f3</font>();</p>
-<p>protected :int <font color="red">f4</font>();</p>
-<p>}</p>
+        <blockquote>
+<p>论文地址:<a href="https://arxiv.org/abs/1512.02325" target="_blank" rel="noopener">https://arxiv.org/abs/1512.02325</a></p>
+<p>源码:<a href="https://github.com/weiliu89/caffe/tree/ssd" target="_blank" rel="noopener">https://github.com/weiliu89/caffe/tree/ssd</a></p>
+</blockquote>
 <a id="more"></a>
 
-<p>正确答案：f4</p>
-<p>解析：静态成员函数属于整个类所拥有，没有this指针</p>
-<p>友元函数不是这个类的成员，没有this指针</p>
-<p>只有<font color="red">类的非静态成员函数</font>有this指针</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前检测的主流算法分为两种类型：</p>
+<p>（1）<strong>two-stage方法</strong>：如R-CNN系列的算法，其主要思路是先通过启发式方法(selective search)或者CNN网络(Region Proposal Net)产生一系列稀疏的候选框，然后对这些候选框进行分类和回归，其优势是准确度高；</p>
+<p>（2）<strong>one-stage方法：</strong> 如Yolo和SSD，其主要思路是均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步，所以其优势是速度快，但是均匀的密集采样的一个重要缺点是训练比较困难，这主要是因为正样本与负样本（背景）极其不均衡，导致模型准确度稍低。 </p>
+<p>SSD，全名Single Shot MultiBox Detector，Single Shot指明了SSD算法属于one-stage方法，MultiBox指明了SSD是多框预测。</p>
+<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p><img src="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/1.png" alt></p>
+<ul>
+<li>网络模型如上图，前面是一个VGG层用于特征提取，与VGG的区别是把FC6和FC6换成了卷积层，SSD在后面又加了8个卷积层。</li>
+<li>最终用于预测的是从这些具有金字塔结构的层中选出的特定层，这些层分别对不同scale和不同aspect ratios的 bounding box进行预测。</li>
+<li>bounding box是 detector/classifier 对 default box 进行回归生成的，而 default box 是由一定规则生成的，这里可以认为 default box 比较像 Faster R-CNN 中的RPN生成的region proposal ，也就是两步检测方案中候选框的作用。</li>
+<li>detector/classifier对这些 default box 进行关于 类别 和 位置的 回归，然后得出一个类别得分和位置坐标偏移量。根据坐标偏移量可以计算出bounding box的位置，根据得分确定此bounding box里的物体类别（每个类别都包含 8732个 bounding box，大部分都是背景 或者说共有 8732个bounding box，每个bounding box 都对一个 C 维的得分，C为类别总数）。</li>
+<li>最后通过NMS（非最大值抑制）过滤掉背景和得分不是很高的框（这个是为了避免重复预测），得到最终的预测。</li>
+</ul>
+<p>YOLO与SSD的主要不同：</p>
+<ul>
+<li><p>SSD是在多个feature map上进行的多尺度（multi-scale）预测（每个feature map预测一种 scale）。而YOLO是只在一个feature map上进行 多尺度预测。</p>
+<p><img src="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/2.png" alt></p>
+<p><img src="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/3.png" alt></p>
+</li>
+</ul>
+<p>总结一下，网络模型的主要特征：</p>
+<ul>
+<li><p>Multi-scale feature maps for detection</p>
+<p>VGG中的 某些层以及VGG后面又添加的一些层中的某些层，被用来检测和分类。不同的feature layer 预测的bounding box的scale是不一样的，因此不同feature layer上的卷积模型也是不一样的（体现在参数和回归效果上）。</p>
+</li>
+<li><p>Convolutional predictors for detection </p>
+<p>每一个被选中用于预测的feature layer，是用一个 3×3 的卷积层用于预测的，比如说某个feature layer的是 m×n×p 大小的，那么卷积核就是 3×3×p，这也是某一个 detector/classifier的参数量，它的输出是对应 bounding box中类别的得分或者相对于default box的坐标偏移量。对应于 feature map 上每个位置（cell），都会有 k 个 default box，那么无疑预测的时候要对每个位置上的每个default box都输出类别得分和坐标偏移。</p>
+</li>
+<li><p>Default boxes and aspect ratios </p>
+<p>每一个被选中预测的feature layer ，其每个位置（cell）都关联k个default box，对每个default box都要输出C个类别得分和4个坐标偏移，因此每个default box有（C+4）个输出，每个位置有 (C+4)k 个输出，对于m×n 大小的feature map输出为 (C+4)kmn 个输出。</p>
+</li>
+</ul>
+<h1 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h1><h2 id="匹配策略"><a href="#匹配策略" class="headerlink" title="匹配策略"></a>匹配策略</h2><p>检测=分类+定位，定位使用的是回归方法。</p>
+<p>平面上任意两个不重合的框都是可以通过对其中一个框进行一定的变换（线性变换+对数变换）使二者重合。</p>
+<p>在SSD中，通俗的说就是先产生一些预选的default box（类似于anchor box），然后标签是 ground truth box，预测的是bounding box，现在有三种框，从default box到ground truth有个变换关系，从default box到prediction bounding box有一个变换关系，如果这两个变换关系是相同的，那么就会导致 prediction bounding box 与 ground truth重合，如图：</p>
+<p><img src="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/4.png" alt></p>
+<p>所以回归的就是这两个 变换关系： <em>l</em>∗与  <em>g</em>∗ ，只要二者接近，就可以使prediction bounding box接近 ground truth box 。上面的 <em>g</em>∗ 是只在训练的时候才有的，inference 时，就只有  <em>l</em>∗ 了，但是这时候的  <em>l</em>∗已经相当精确了，所以就可以产生比较准确的定位效果。</p>
+<p>计算default box与任意的ground truth box之间的 杰卡德系数（jaccard overlap ），其实就是IOU，只要二者之间的阈值大于0.5，就认为这是个正样本。</p>
+<h2 id="训练目标"><a href="#训练目标" class="headerlink" title="训练目标"></a>训练目标</h2><p>损失函数，包含了定位和分类：</p>
+<p><img src="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/5.png" alt></p>
+<ul>
+<li>N是匹配成功的正样本数量，如果N=0，则令 loss=0.</li>
+<li><em>α</em> 是定位损失与分类损失之间的比重，这个值论文中提到是通过交叉验证的方式设置为 1 的。</li>
+</ul>
+<p>定位损失，用的是smooth L1 loss</p>
+<p><img src="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/6.png" alt></p>
+<ul>
+<li><em>l</em> 代表预测bounding box与default box之间的变换关系，  <em>g</em> 代表的是ground truth box与default box之间的变换关系。</li>
+<li>$x^p_ij$ 代表 第 i 个default box 与类别 p 的 第 j 个ground truth box 是否匹配，匹配为1，否则为0；</li>
+</ul>
+<p>分类损失，softmax loss，交叉熵</p>
+<p><img src="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/7.png" alt></p>
 
       
 
@@ -225,11 +276,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSD</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">this指针</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
         		</li>
       		
 		</ul>
@@ -285,7 +340,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/06/this%E6%8C%87%E9%92%88/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,15 +354,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/11/06/fork%E5%87%BD%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          fork()函数
-        
-      </div>
-    </a>
   
+    <a href="/2019/11/09/strlen%E4%B8%8Esizeof/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">strlen与sizeof</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

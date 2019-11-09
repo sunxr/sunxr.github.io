@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SSD-目标检测 | 阿木木</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="论文地址:https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1512.02325 源码:https:&#x2F;&#x2F;github.com&#x2F;weiliu89&#x2F;caffe&#x2F;tree&#x2F;ssd 前言目前检测的主流算法分为两种类型： （1）two-stage方法：如R-CNN系列的算法，其主要思路是先通过启发式方法(selective search)或者CNN网络(Region Proposal Net)产生一系列稀疏的候选">
+  <meta name="description" content="论文地址:https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1512.02325 源码:https:&#x2F;&#x2F;github.com&#x2F;weiliu89&#x2F;caffe&#x2F;tree&#x2F;ssd">
 <meta name="keywords" content="SSD,目标检测,深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSD-目标检测">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;SSD&#x2F;index.html">
 <meta property="og:site_name" content="阿木木">
-<meta property="og:description" content="论文地址:https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1512.02325 源码:https:&#x2F;&#x2F;github.com&#x2F;weiliu89&#x2F;caffe&#x2F;tree&#x2F;ssd 前言目前检测的主流算法分为两种类型： （1）two-stage方法：如R-CNN系列的算法，其主要思路是先通过启发式方法(selective search)或者CNN网络(Region Proposal Net)产生一系列稀疏的候选">
+<meta property="og:description" content="论文地址:https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1512.02325 源码:https:&#x2F;&#x2F;github.com&#x2F;weiliu89&#x2F;caffe&#x2F;tree&#x2F;ssd">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;arleyzhang.github.io&#x2F;articles&#x2F;786f1ca3&#x2F;1521700215199.png">
-<meta property="og:updated_time" content="2019-11-09T03:25:37.087Z">
+<meta property="og:updated_time" content="2019-11-09T03:48:56.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;arleyzhang.github.io&#x2F;articles&#x2F;786f1ca3&#x2F;1521700215199.png">
   
@@ -181,6 +181,8 @@
       
         <p>论文地址:<a href="https://arxiv.org/abs/1512.02325" target="_blank" rel="noopener">https://arxiv.org/abs/1512.02325</a></p>
 <p>源码:<a href="https://github.com/weiliu89/caffe/tree/ssd" target="_blank" rel="noopener">https://github.com/weiliu89/caffe/tree/ssd</a></p>
+<a id="more"></a>
+
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前检测的主流算法分为两种类型：</p>
 <p>（1）<strong>two-stage方法</strong>：如R-CNN系列的算法，其主要思路是先通过启发式方法(selective search)或者CNN网络(Region Proposal Net)产生一系列稀疏的候选框，然后对这些候选框进行分类和回归，其优势是准确度高；</p>
 <p>（2）<strong>one-stage方法：</strong> 如Yolo和SSD，其主要思路是均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步，所以其优势是速度快，但是均匀的密集采样的一个重要缺点是训练比较困难，这主要是因为正样本与负样本（背景）极其不均衡，导致模型准确度稍低。 </p>
@@ -459,11 +461,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">demo</a>
+                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
+                <a href="javascript:void(0)" class="js-tag color5">demo</a>
               </li>
             
             <div class="clearfix"></div>
