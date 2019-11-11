@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>BoundingBox回归 | 阿木木</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="通俗的理解，Region Proposal与Ground Truth之间总会存在误差，因此需要对Region Proposal进行微调，而BoundingBox回归就是用来微调这个窗口的。 Bounding Box对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一">
+  <meta name="description" content="通俗的理解，Region Proposal与Ground Truth之间总会存在误差，因此需要对Region Proposal进行微调，而BoundingBox回归就是用来微调这个窗口的。 Bounding Box对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一种关">
 <meta name="keywords" content="深度学习,SSD,BoundingBox">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BoundingBox回归">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;BoundingBox%E5%9B%9E%E5%BD%92&#x2F;index.html">
 <meta property="og:site_name" content="阿木木">
-<meta property="og:description" content="通俗的理解，Region Proposal与Ground Truth之间总会存在误差，因此需要对Region Proposal进行微调，而BoundingBox回归就是用来微调这个窗口的。 Bounding Box对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一">
+<meta property="og:description" content="通俗的理解，Region Proposal与Ground Truth之间总会存在误差，因此需要对Region Proposal进行微调，而BoundingBox回归就是用来微调这个窗口的。 Bounding Box对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一种关">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;BoundingBox%E5%9B%9E%E5%BD%92&#x2F;BoundingBox%E5%9B%9E%E5%BD%92%5C1.png">
-<meta property="og:updated_time" content="2019-11-11T14:52:54.984Z">
+<meta property="og:updated_time" content="2019-11-11T14:54:38.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;BoundingBox%E5%9B%9E%E5%BD%92&#x2F;BoundingBox%E5%9B%9E%E5%BD%92%5C1.png">
   
@@ -179,9 +179,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-<p>通俗的理解，Region Proposal与Ground Truth之间总会存在误差，因此需要对Region Proposal进行微调，而BoundingBox回归就是用来微调这个窗口的。</p>
+        <p>通俗的理解，Region Proposal与Ground Truth之间总会存在误差，因此需要对Region Proposal进行微调，而BoundingBox回归就是用来微调这个窗口的。</p>
 <h2 id="Bounding-Box"><a href="#Bounding-Box" class="headerlink" title="Bounding Box"></a>Bounding Box</h2><p>对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一种关系使得P经过映射得到一个与G更接近的回归窗口$\hat{G}$。</p>
 <p><img src="/2019/11/11/BoundingBox%E5%9B%9E%E5%BD%92/BoundingBox%E5%9B%9E%E5%BD%92%5C1.png" alt></p>
 <p>BoundingBox=回归的目的：给定$(P_x,P_y,P_w,P_h)$，寻找一种映射$f$，使得$f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})$。</p>
@@ -437,7 +435,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">fork</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -446,18 +456,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">demo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">fork</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
             
             <div class="clearfix"></div>
