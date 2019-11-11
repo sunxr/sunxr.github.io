@@ -9,7 +9,7 @@
   <title>BoundingBox回归 | 阿木木</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="通俗的理解，Region Proposal与Ground Truth之间总会存在误差，因此需要对Region Proposal进行微调，而BoundingBox回归就是用来微调这个窗口的。 Bounding Box对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一种关">
-<meta name="keywords" content="深度学习,SSD,BoundingBox">
+<meta name="keywords" content="SSD,深度学习,BoundingBox">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BoundingBox回归">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;BoundingBox%E5%9B%9E%E5%BD%92&#x2F;index.html">
@@ -47,7 +47,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?w_*">
 <meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?d_*(P)">
 <meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?(t_x,t_y,t_w,t_h)">
-<meta property="og:updated_time" content="2019-11-11T15:56:12.961Z">
+<meta property="og:updated_time" content="2019-11-11T15:57:52.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\hat{G}">
   
@@ -213,6 +213,8 @@
 <h2 id="Bounding-Box"><a href="#Bounding-Box" class="headerlink" title="Bounding Box"></a>Bounding Box</h2><p>对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一种关系使得P经过映射得到一个与G更接近的回归窗口<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}" title="\hat{G}"></a>。</p>
 <p><img src="/2019/11/11/BoundingBox%E5%9B%9E%E5%BD%92/1.png" alt></p>
 <p>BoundingBox回归的目的：给定<a href="https://www.codecogs.com/eqnedit.php?latex=(P_x,P_y,P_w,P_h)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(P_x,P_y,P_w,P_h)" title="(P_x,P_y,P_w,P_h)"></a>，寻找一种映射<a href="https://www.codecogs.com/eqnedit.php?latex=f" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f" title="f"></a>，使得<a href="https://www.codecogs.com/eqnedit.php?latex=f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})" title="f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})"></a>，并且<a href="https://www.codecogs.com/eqnedit.php?latex=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})\approx(G_x,G_y,G_w,G_h)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})\approx(G_x,G_y,G_w,G_h)" title="(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})\approx(G_x,G_y,G_w,G_h)"></a></p>
+<a id="more"></a>
+
 <h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>由P变为<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}" title="\hat{G}"></a> ，基本思路是：平移+尺度缩放。</p>
 <p>1.先做平移<a href="https://www.codecogs.com/eqnedit.php?latex=(\Delta&space;x,\Delta&space;y)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(\Delta&space;x,\Delta&space;y)" title="(\Delta x,\Delta y)"></a>，<a href="https://www.codecogs.com/eqnedit.php?latex=\Delta&space;x=P_w&space;d_x(P)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\Delta&space;x=P_w&space;d_x(P)" title="\Delta x=P_w d_x(P)"></a>，<a href="https://www.codecogs.com/eqnedit.php?latex=\Delta&space;y=P_h&space;d_y(P)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\Delta&space;y=P_h&space;d_y(P)" title="\Delta y=P_h d_y(P)"></a>，则：</p>
 <p>​    <a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}_x=P_w&space;d_x(P)&plus;P_x" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}_x=P_w&space;d_x(P)&plus;P_x" title="\hat{G}_x=P_w d_x(P)+P_x"></a>，          <a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}_y=P_h&space;d_y(P)&plus;P_y" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}_y=P_h&space;d_y(P)&plus;P_y" title="\hat{G}_y=P_h d_y(P)+P_y"></a> </p>
@@ -260,11 +262,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSD</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSD</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -466,15 +468,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SSD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">BoundingBox</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,7 +476,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">fork</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">BoundingBox</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,15 +488,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">fork</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">demo</a>
+                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
+                <a href="javascript:void(0)" class="js-tag color5">demo</a>
               </li>
             
             <div class="clearfix"></div>
