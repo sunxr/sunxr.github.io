@@ -16,10 +16,40 @@
 <meta property="og:site_name" content="阿木木">
 <meta property="og:description" content="通俗的理解，Region Proposal与Ground Truth之间总会存在误差，因此需要对Region Proposal进行微调，而BoundingBox回归就是用来微调这个窗口的。 Bounding Box对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一种关">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\hat{G}">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;BoundingBox%E5%9B%9E%E5%BD%92&#x2F;BoundingBox%E5%9B%9E%E5%BD%92%5C1.png">
-<meta property="og:updated_time" content="2019-11-11T14:54:38.347Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?(P_x,P_y,P_w,P_h)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?f">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})\approx(G_x,G_y,G_w,G_h)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\hat{G}">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?(\Delta&amp;space;x,\Delta&amp;space;y)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\Delta&amp;space;x=P_w&amp;space;d_x(P)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\Delta&amp;space;y=P_h&amp;space;d_y(P)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\hat{G}_x=P_w&amp;space;d_x(P)&amp;plus;P_x">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\hat{G}_y=P_h&amp;space;d_y(P)&amp;plus;P_y">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?(S_w,S_h)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?S_w=exp(d_w(P))">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?S_h=exp(d_h(P))">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\hat{G}_w=P_w&amp;space;exp(d_w(P))">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\hat{G}_h=P_h&amp;space;exp(d_h(P))">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?Y\approx&amp;space;WX">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?d_x(P),d_y(P),d_w(P),d_h(P)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\hat{G}">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?(t_x,t_y)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?(t_w,t_h)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?t_x=(G_x-P_x)&#x2F;P_w">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?t_y=(G_y-P_y)&#x2F;P_h">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?t_w=\log(G_w&#x2F;P_w)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?t_h=\log(G_h&#x2F;P_h)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?d_*(P)=w_*^T\Phi_5(P)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\Phi_5(P)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?w_*">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?d_*(P)">
+<meta property="og:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?(t_x,t_y,t_w,t_h)">
+<meta property="og:updated_time" content="2019-11-11T15:54:05.191Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;BoundingBox%E5%9B%9E%E5%BD%92&#x2F;BoundingBox%E5%9B%9E%E5%BD%92%5C1.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?\hat{G}">
   
     <link rel="alternative" href="/atom.xml" title="阿木木" type="application/atom+xml">
   
@@ -180,9 +210,22 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>通俗的理解，Region Proposal与Ground Truth之间总会存在误差，因此需要对Region Proposal进行微调，而BoundingBox回归就是用来微调这个窗口的。</p>
-<h2 id="Bounding-Box"><a href="#Bounding-Box" class="headerlink" title="Bounding Box"></a>Bounding Box</h2><p>对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一种关系使得P经过映射得到一个与G更接近的回归窗口$\hat{G}$。</p>
+<h2 id="Bounding-Box"><a href="#Bounding-Box" class="headerlink" title="Bounding Box"></a>Bounding Box</h2><p>对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一种关系使得P经过映射得到一个与G更接近的回归窗口<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}" title="\hat{G}"></a>。</p>
 <p><img src="/2019/11/11/BoundingBox%E5%9B%9E%E5%BD%92/BoundingBox%E5%9B%9E%E5%BD%92%5C1.png" alt></p>
-<p>BoundingBox=回归的目的：给定$(P_x,P_y,P_w,P_h)$，寻找一种映射$f$，使得$f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})$。</p>
+<p>BoundingBox回归的目的：给定<a href="https://www.codecogs.com/eqnedit.php?latex=(P_x,P_y,P_w,P_h)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(P_x,P_y,P_w,P_h)" title="(P_x,P_y,P_w,P_h)"></a>，寻找一种映射<a href="https://www.codecogs.com/eqnedit.php?latex=f" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f" title="f"></a>，使得<a href="https://www.codecogs.com/eqnedit.php?latex=f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})" title="f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})"></a>，并且<a href="https://www.codecogs.com/eqnedit.php?latex=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})\approx(G_x,G_y,G_w,G_h)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})\approx(G_x,G_y,G_w,G_h)" title="(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})\approx(G_x,G_y,G_w,G_h)"></a></p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>由P变为<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}" title="\hat{G}"></a> ，基本思路是：平移+尺度缩放。</p>
+<p>1.先做平移<a href="https://www.codecogs.com/eqnedit.php?latex=(\Delta&space;x,\Delta&space;y)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(\Delta&space;x,\Delta&space;y)" title="(\Delta x,\Delta y)"></a>，<a href="https://www.codecogs.com/eqnedit.php?latex=\Delta&space;x=P_w&space;d_x(P)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\Delta&space;x=P_w&space;d_x(P)" title="\Delta x=P_w d_x(P)"></a>，<a href="https://www.codecogs.com/eqnedit.php?latex=\Delta&space;y=P_h&space;d_y(P)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\Delta&space;y=P_h&space;d_y(P)" title="\Delta y=P_h d_y(P)"></a>，则：</p>
+<p>​    <a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}_x=P_w&space;d_x(P)&plus;P_x" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}_x=P_w&space;d_x(P)&plus;P_x" title="\hat{G}_x=P_w d_x(P)+P_x"></a>，          <a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}_y=P_h&space;d_y(P)&plus;P_y" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}_y=P_h&space;d_y(P)&plus;P_y" title="\hat{G}_y=P_h d_y(P)+P_y"></a> </p>
+<p>2.再做尺度缩放<a href="https://www.codecogs.com/eqnedit.php?latex=(S_w,S_h)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(S_w,S_h)" title="(S_w,S_h)"></a>，<a href="https://www.codecogs.com/eqnedit.php?latex=S_w=exp(d_w(P))" target="_blank"><img src="https://latex.codecogs.com/gif.latex?S_w=exp(d_w(P))" title="S_w=exp(d_w(P))"></a>，<a href="https://www.codecogs.com/eqnedit.php?latex=S_h=exp(d_h(P))" target="_blank"><img src="https://latex.codecogs.com/gif.latex?S_h=exp(d_h(P))" title="S_h=exp(d_h(P))"></a>，则：</p>
+<p>​    <a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}_w=P_w&space;exp(d_w(P))" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}_w=P_w&space;exp(d_w(P))" title="\hat{G}_w=P_w exp(d_w(P))"></a>，        <a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}_h=P_h&space;exp(d_h(P))" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}_h=P_h&space;exp(d_h(P))" title="\hat{G}_h=P_h exp(d_h(P))"></a> </p>
+<p>线性回归就是给定输入的特征向量X，学习一组参数W，使得经过线性回归后的值跟真实值Y非常接近<a href="https://www.codecogs.com/eqnedit.php?latex=Y\approx&space;WX" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Y\approx&space;WX" title="Y\approx WX"></a>。</p>
+<p>我们的目标是要学习得到<a href="https://www.codecogs.com/eqnedit.php?latex=d_x(P),d_y(P),d_w(P),d_h(P)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?d_x(P),d_y(P),d_w(P),d_h(P)" title="d_x(P),d_y(P),d_w(P),d_h(P)"></a>，因为有了这四个变换值，我们就可以直接得到输出值<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}" title="\hat{G}"></a>。为了能够学习这四个值，我们应该有四个标签数据，即G与P之间的变换系数，记G与P之间的平移量为<a href="https://www.codecogs.com/eqnedit.php?latex=(t_x,t_y)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(t_x,t_y)" title="(t_x,t_y)"></a>,尺度缩放为<a href="https://www.codecogs.com/eqnedit.php?latex=(t_w,t_h)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(t_w,t_h)" title="(t_w,t_h)"></a>。即：</p>
+<p>​                                    <a href="https://www.codecogs.com/eqnedit.php?latex=t_x=(G_x-P_x)/P_w" target="_blank"><img src="https://latex.codecogs.com/gif.latex?t_x=(G_x-P_x)/P_w" title="t_x=(G_x-P_x)/P_w"></a></p>
+<p>​                                    <a href="https://www.codecogs.com/eqnedit.php?latex=t_y=(G_y-P_y)/P_h" target="_blank"><img src="https://latex.codecogs.com/gif.latex?t_y=(G_y-P_y)/P_h" title="t_y=(G_y-P_y)/P_h"></a></p>
+<p>​                                    <a href="https://www.codecogs.com/eqnedit.php?latex=t_w=\log(G_w/P_w)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?t_w=\log(G_w/P_w)" title="t_w=\log(G_w/P_w)"></a></p>
+<p>​                                    <a href="https://www.codecogs.com/eqnedit.php?latex=t_h=\log(G_h/P_h)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?t_h=\log(G_h/P_h)" title="t_h=\log(G_h/P_h)"></a></p>
+<p>那么，目标函数可以表示为<a href="https://www.codecogs.com/eqnedit.php?latex=d_*(P)=w_*^T\Phi_5(P)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?d_*(P)=w_*^T\Phi_5(P)" title="d_*(P)=w_*^T\Phi_5(P)"></a>，<a href="https://www.codecogs.com/eqnedit.php?latex=\Phi_5(P)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\Phi_5(P)" title="\Phi_5(P)"></a>是输入Proposal的特征向量，<a href="https://www.codecogs.com/eqnedit.php?latex=w_*" target="_blank"><img src="https://latex.codecogs.com/gif.latex?w_*" title="w_*"></a>是要学习的参数(*表示x,y,w,h，即每一个变换对应一个目标函数)。 </p>
+<p><a href="https://www.codecogs.com/eqnedit.php?latex=d_*(P)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?d_*(P)" title="d_*(P)"></a>是得到的预测值，我们想让预测值与真实值<a href="https://www.codecogs.com/eqnedit.php?latex=(t_x,t_y,t_w,t_h)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(t_x,t_y,t_w,t_h)" title="(t_x,t_y,t_w,t_h)"></a>的差距尽量小，则可以用均方差作为Loss函数。</p>
 
       
 
