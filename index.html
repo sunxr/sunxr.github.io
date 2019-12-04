@@ -185,46 +185,7 @@
 <li>bazel-0.18.0</li>
 <li>python-2.7/3.5</li>
 </ul>
-<h2 id="1-安装Protobuf"><a href="#1-安装Protobuf" class="headerlink" title="1.安装Protobuf"></a>1.安装Protobuf</h2><p>需要注意的是，protobuf的版本要与tensorflow版本相对应，protobuf官方<a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank" rel="noopener">链接</a>，tensorflow1.8.0对应的protobuf版本为3.4。</p>
-<p>点击最下面的选项Source Code(tar.gz)，并解压进入文件夹，在编译安装protobuf之前需要先安装一些工具（automake libtool）。</p>
-<p>在终端依次输入指令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install automake libtool</span><br><span class="line">./autogen.sh</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line"><span class="meta">#</span><span class="bash"> sudo make uninstall 安装错版本后卸载指令</span></span><br><span class="line">protoc --version  # 查看protobuf版本</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-安装Bazel"><a href="#2-安装Bazel" class="headerlink" title="2.安装Bazel"></a>2.安装Bazel</h2><p>Bazel与tensorflow的版本也需要对应，这里用的Bazel版本为0.18.0，Bazel<a href="https://github.com/bazelbuild/bazel/releases" target="_blank" rel="noopener">链接</a>。</p>
-<p>下载二进制文件bazel-0.18.0-installer-linux-x86_64.sh</p>
-<p>打开终端运行Bazel安装程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x bazel-0.15.2-installer-linux-x86_64.sh</span><br><span class="line">./bazel-0.15.2-installer-linux-x86_64.sh --user</span><br></pre></td></tr></table></figure>
-
-<p>安装完后配置环境，打开~/.bashrc(sudo gedit ~/.bashrc)并在文件最后加入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH="$PATH:$HOME/bin"</span><br></pre></td></tr></table></figure>
-
-<p>保存后使其生效</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-编译tensorflow源码"><a href="#3-编译tensorflow源码" class="headerlink" title="3.编译tensorflow源码"></a>3.编译tensorflow源码</h2><p>tensorflow官方源码<a href="https://github.com/tensorflow/tensorflow/tags" target="_blank" rel="noopener">链接</a>，选择所需要的版本，下载Source Code(tar.gz)</p>
-<p>解压，并进入文件夹，打开命令行终端，输入命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure>
-
-<p>在这过程中，基本都可以选择No，若是编译GPU版本，则在<strong>build Tensorflow with CUDA support ?</strong>中选择Y，并输入对应的CUDA以及cuDNN版本</p>
-<p>配置完成后用Bazel编译：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bazel build --config=opt //tensorflow:libtensorflow_cc.so  # CPU版</span><br><span class="line">bazel build --config=opt --config=cuda //tensorflow:libtensorflow_cc.so  # GPU版</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>，若是在C++环境中需要使用opencv环境，使用命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bazel build --config=monolithic //tensorflow:libtensorflow_cc.so</span><br></pre></td></tr></table></figure>
-
-<p>一般的编译时间大概为半个小时到一个小时，编译完之后的信息如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Target //tensorflow:libtensorflow_cc.so up-to-date:</span><br><span class="line">  bazel-bin/tensorflow/libtensorflow_cc.so</span><br><span class="line"> </span><br><span class="line">INFO: Elapsed time: 1233.631s, Critical Path: 48.36s</span><br><span class="line">INFO: 2724 processes: 2724 local.</span><br><span class="line">INFO: Build completed successfully, 2842 total actions</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>，看下路径./tensorflow-1.8.0/tensorflow/contrib/makefile下有没有downloads文件夹，若是没有，则需要在./tensorflow-1.8.0文件夹下，输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./tensorflow-1.8.0/tensorflow/contrib/makefile/download_dependencies.sh</span><br></pre></td></tr></table></figure>
-
-<p>执行完后，会有downloads文件夹。</p>
-<h2 id="4-安装Eigen库"><a href="#4-安装Eigen库" class="headerlink" title="4.安装Eigen库"></a>4.安装Eigen库</h2><p>首先打开上一步downloads文件夹，里面会有eigen文件夹，进入eigen文件夹依次输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>安装完毕后，会在usr/local/include目录下会出现eigen3文件夹</p>
-<p>接下来就是用C++调用pb模型了。。。后续继续更新。</p>
-
+        
       
 
       
@@ -237,11 +198,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
         		</li>
       		
 		</ul>
@@ -969,27 +930,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">demo</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1002,6 +951,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">demo</a>
               </li>
             
             <div class="clearfix"></div>
