@@ -8,15 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Ubuntu编译好的tensorflow环境转移 | 阿木木</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="武汉大学计算机学院在读硕士">
+  <meta name="description" content="由于自身电脑内存较小，在编译tensorflow时会出现内存不足的情况，所以不得不在更高内存的服务器上先编译好tensorflow，对于如何编译tensorflow，点击，再将编译好的环境转移到自身电脑中。">
+<meta name="keywords" content="tensorflow,Ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu编译好的tensorflow环境转移">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;Ubuntu%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84tensorflow%E7%8E%AF%E5%A2%83%E8%BD%AC%E7%A7%BB&#x2F;index.html">
 <meta property="og:site_name" content="阿木木">
-<meta property="og:description" content="武汉大学计算机学院在读硕士">
+<meta property="og:description" content="由于自身电脑内存较小，在编译tensorflow时会出现内存不足的情况，所以不得不在更高内存的服务器上先编译好tensorflow，对于如何编译tensorflow，点击，再将编译好的环境转移到自身电脑中。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-09T14:58:47.991Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;Ubuntu%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84tensorflow%E7%8E%AF%E5%A2%83%E8%BD%AC%E7%A7%BB&#x2F;1.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;Ubuntu%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84tensorflow%E7%8E%AF%E5%A2%83%E8%BD%AC%E7%A7%BB&#x2F;2.jpg">
+<meta property="og:updated_time" content="2019-12-09T15:21:35.280Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;Ubuntu%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84tensorflow%E7%8E%AF%E5%A2%83%E8%BD%AC%E7%A7%BB&#x2F;1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="阿木木" type="application/atom+xml">
   
@@ -176,7 +180,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>由于自身电脑内存较小，在编译tensorflow时会出现内存不足的情况，所以不得不在更高内存的服务器上先编译好tensorflow，对于如何编译tensorflow，<a href="https://sunxr.github.io/2019/12/04/ubuntu%E7%BC%96%E8%AF%91tensorflow/" target="_blank" rel="noopener">点击</a>，再将编译好的环境转移到自身电脑中。</p>
+<a id="more"></a>
+
+<h2 id="查看文件软链接"><a href="#查看文件软链接" class="headerlink" title="查看文件软链接"></a>查看文件软链接</h2><p>对于编译好的tensorflow，会在文件夹中出现：</p>
+<p><img src="/2019/12/09/Ubuntu%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84tensorflow%E7%8E%AF%E5%A2%83%E8%BD%AC%E7%A7%BB/1.jpg" alt></p>
+<p>其中，bazel-bin，bazel-genfiles，bazel-out，bazel-tensorflow-1.8.0以及bazel-testlogs为 软链接文件夹。</p>
+<p>可用如下命令查看其链接的位置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -ll</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/2019/12/09/Ubuntu%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84tensorflow%E7%8E%AF%E5%A2%83%E8%BD%AC%E7%A7%BB/2.jpg" alt></p>
+<p>按照路径寻找这几个文件夹，进行压缩，得到284.tar</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zcvf 284006526c782bafe3a4ee9846bf3e4b 284</span><br></pre></td></tr></table></figure>
+
+<h2 id="拷贝编译好的tensorflow文件夹"><a href="#拷贝编译好的tensorflow文件夹" class="headerlink" title="拷贝编译好的tensorflow文件夹"></a>拷贝编译好的tensorflow文件夹</h2><p>首先压缩整个文件夹，得到tensorflow.tar</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zcvf tensorflow.tar.gz tensorflow</span><br></pre></td></tr></table></figure>
+
+<p>将tensorflow.tar与284.tar一同存入U盘</p>
+<h2 id="在本机上的操作"><a href="#在本机上的操作" class="headerlink" title="在本机上的操作"></a>在本机上的操作</h2><p>解压刚刚得到的两个文件夹，进入tensorflow文件夹，可以看到bazel-bin，bazel-genfiles，bazel-out，bazel-tensorflow-1.8.0以及bazel-testlogs大小都为0，直接删去。</p>
+<p>在tensorflow文件夹中打开终端，建立248文件中的软链接，其中一个如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s 248/exeroot/org_tensorflow/bazel-out/k8-opt/bin</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -205,6 +231,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -397,22 +438,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
@@ -425,7 +450,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -437,11 +478,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">demo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
               </li>
             
             <div class="clearfix"></div>
