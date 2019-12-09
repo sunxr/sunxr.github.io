@@ -9,14 +9,14 @@
   <title>ubuntu编译tensorflow | 阿木木</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="ubuntu编译tensorflow环境准备 Ubuntu-16.04（内存8G起步） tensorflow-1.8.0（CPU版） protobuf-3.5.0 gcc-4.8以上 bazel-0.18.0 python-2.7&#x2F;3.5">
-<meta name="keywords" content="tensorflow,ubuntu">
+<meta name="keywords" content="ubuntu,tensorflow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu编译tensorflow">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;04&#x2F;ubuntu%E7%BC%96%E8%AF%91tensorflow&#x2F;index.html">
 <meta property="og:site_name" content="阿木木">
 <meta property="og:description" content="ubuntu编译tensorflow环境准备 Ubuntu-16.04（内存8G起步） tensorflow-1.8.0（CPU版） protobuf-3.5.0 gcc-4.8以上 bazel-0.18.0 python-2.7&#x2F;3.5">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-06T14:18:18.835Z">
+<meta property="og:updated_time" content="2019-12-09T15:05:39.810Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="阿木木" type="application/atom+xml">
@@ -187,7 +187,7 @@
 </ul>
 <a id="more"></a>
 
-<h2 id="1-安装Protobuf"><a href="#1-安装Protobuf" class="headerlink" title="1.安装Protobuf"></a>1.安装Protobuf</h2><p>需要注意的是，protobuf的版本要与tensorflow版本相对应，protobuf官方<a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank" rel="noopener">链接</a>，tensorflow1.8.0对应的protobuf版本为3.4。</p>
+<h2 id="1-安装Protobuf"><a href="#1-安装Protobuf" class="headerlink" title="1.安装Protobuf"></a>1.安装Protobuf</h2><p>需要注意的是，protobuf的版本要与tensorflow版本相对应，protobuf官方<a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank" rel="noopener">链接</a>，tensorflow1.8.0对应的protobuf版本为3.5。</p>
 <p>点击最下面的选项Source Code(tar.gz)，并解压进入文件夹，在编译安装protobuf之前需要先安装一些工具（automake libtool）。</p>
 <p>在终端依次输入指令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install automake libtool</span><br><span class="line">./autogen.sh</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line"><span class="meta">#</span><span class="bash"> sudo make uninstall 安装错版本后卸载指令</span></span><br><span class="line">protoc --version  # 查看protobuf版本</span><br></pre></td></tr></table></figure>
@@ -260,11 +260,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
         		</li>
       		
 		</ul>
@@ -333,6 +333,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/12/09/Ubuntu%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84tensorflow%E7%8E%AF%E5%A2%83%E8%BD%AC%E7%A7%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Ubuntu编译好的tensorflow环境转移
+        
+      </div>
+    </a>
   
   
     <a href="/2019/11/28/Windows%E4%B8%8BQT%E8%B0%83%E7%94%A8pb%E6%A8%A1%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
@@ -462,6 +471,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
@@ -471,22 +496,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">BoundingBox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,11 +511,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+                <a href="javascript:void(0)" class="js-tag color5">demo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">demo</a>
+                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
               </li>
             
             <div class="clearfix"></div>
