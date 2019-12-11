@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/11 | 阿木木</title>
+  <title>ubuntu用QT调用pb | 阿木木</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="武汉大学计算机学院在读硕士">
-<meta property="og:type" content="website">
-<meta property="og:title" content="阿木木">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2019&#x2F;11&#x2F;index.html">
+  <meta name="description" content="在Ubuntu上编译好tensorflow，并且将其移植到另一台ubuntu系统。 现在需要在移植的系统上调用tensorflow训练好的pb模型。">
+<meta name="keywords" content="ubuntu,Qt,pb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu用QT调用pb">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;11&#x2F;ubuntu%E7%94%A8QT%E8%B0%83%E7%94%A8pb&#x2F;index.html">
 <meta property="og:site_name" content="阿木木">
-<meta property="og:description" content="武汉大学计算机学院在读硕士">
+<meta property="og:description" content="在Ubuntu上编译好tensorflow，并且将其移植到另一台ubuntu系统。 现在需要在移植的系统上调用tensorflow训练好的pb模型。">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;11&#x2F;ubuntu%E7%94%A8QT%E8%B0%83%E7%94%A8pb&#x2F;1.png">
+<meta property="og:updated_time" content="2019-12-11T14:36:04.983Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;11&#x2F;ubuntu%E7%94%A8QT%E8%B0%83%E7%94%A8pb&#x2F;1.png">
   
     <link rel="alternative" href="/atom.xml" title="阿木木" type="application/atom+xml">
   
@@ -155,324 +159,208 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ubuntu用QT调用pb" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ubuntu用QT调用pb
+    </h1>
+  
+
+        
+        <a href="/2019/12/11/ubuntu%E7%94%A8QT%E8%B0%83%E7%94%A8pb/" class="archive-article-date">
+  	<time datetime="2019-12-11T14:34:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-11</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Ubuntu上<a href="https://sunxr.github.io/2019/12/04/ubuntu%E7%BC%96%E8%AF%91tensorflow/" target="_blank" rel="noopener">编译</a>好tensorflow，并且将其<a href="https://sunxr.github.io/2019/12/09/Ubuntu%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84tensorflow%E7%8E%AF%E5%A2%83%E8%BD%AC%E7%A7%BB/" target="_blank" rel="noopener">移植</a>到另一台ubuntu系统。</p>
+<p>现在需要在移植的系统上调用tensorflow训练好的pb模型。</p>
+<a id="more"></a>
+
+<h2 id="1-安装eigen库"><a href="#1-安装eigen库" class="headerlink" title="1.安装eigen库"></a>1.安装eigen库</h2><p>对于已经建立好软链接的tensorflow文件夹，需要进行Eigen库的安装。打开./tensorflow/tensorflow/contrib/makefile/downloads/eigen文件夹，在该文件夹下打开终端，依次输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>安装完毕后，在usr/local/include目录下会出现eigen3文件夹</p>
+<h2 id="2-protobuf的安装"><a href="#2-protobuf的安装" class="headerlink" title="2.protobuf的安装"></a>2.protobuf的安装</h2><p>由于在服务器使用的是protobuf-3.5进行编译的，因此在本机上要用protobuf还原环境。</p>
+<p>下载protobuf-3.5.0<a href="https://github.com/protocolbuffers/protobuf/releases/tag/v3.5.0" target="_blank" rel="noopener">源码</a>，解压，进入文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install automake libtool</span><br><span class="line">./autogen.sh</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br><span class="line">protoc --version  # 查看protobuf版本</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-使用qtcreator读取pb文件"><a href="#3-使用qtcreator读取pb文件" class="headerlink" title="3.使用qtcreator读取pb文件"></a>3.使用qtcreator读取pb文件</h2><p>（1）将“tensorflow/bazel-genfiles/tensorflow/”中的cc和core文件夹中的内容copy到“tensorflow/tensorflow/”中，选择合并覆盖</p>
+<p>（2）进入tensorflow/bazel-bin/tensorflow 文件夹，会有一个编译生成的libtensorflow_cc.so文件。若是通过bazel build –config=opt //tensorflow:libtensorflow_cc.so指令进行编译的，将libtensorflow_cc.so和libtensorflow_framework.so两个文件复制到/usr/local/lib文件夹下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp libtensorflow_cc.so /usr/local/lib/</span><br><span class="line">sudo cp libtensorflow_framework.so /usr/local/lib/</span><br></pre></td></tr></table></figure>
+
+<p>若是通过bazel build –config=monolithic // tensorflow:libtensorflow_cc.so编译的，只需将libtensorflow_cc.so文件复制到/usr/local/lib文件夹下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp libtensorflow_cc.so /usr/local/lib</span><br></pre></td></tr></table></figure>
+
+<p>（3）配置opencv，见<a href="https://sunxr.github.io/2019/12/11/ubuntu%E9%85%8D%E7%BD%AEopencv%E5%B9%B6%E7%94%A8QT%E8%B0%83%E7%94%A8/" target="_blank" rel="noopener">博文</a></p>
+<p>（4）配置.pro文件，将libtensorflow_cc.so包含进去</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">TEMPLATE = app</span><br><span class="line"></span><br><span class="line">QT += qml quick</span><br><span class="line">CONFIG += c++11</span><br><span class="line"></span><br><span class="line">SOURCES += main.cpp \</span><br><span class="line">    tools.cpp</span><br><span class="line"></span><br><span class="line">RESOURCES += qml.qrc</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Additional import path used to resolve QML modules <span class="keyword">in</span> Qt Creator<span class="string">'s code model</span></span></span><br><span class="line">QML_IMPORT_PATH =</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Additional import path used to resolve QML modules just <span class="keyword">for</span> Qt Quick Designer</span></span><br><span class="line">QML_DESIGNER_IMPORT_PATH =</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> The following define makes your compiler emit warnings <span class="keyword">if</span> you use</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> any feature of Qt <span class="built_in">which</span> as been marked deprecated (the exact warnings</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> depend on your compiler). Please consult the documentation of the</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> deprecated API <span class="keyword">in</span> order to know how to port your code away from it.</span></span><br><span class="line">DEFINES += QT_DEPRECATED_WARNINGS</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> You can also make your code fail to compile <span class="keyword">if</span> you use deprecated APIs.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> In order to <span class="keyword">do</span> so, uncomment the following line.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> You can also select to <span class="built_in">disable</span> deprecated APIs only up to a certain version of Qt.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    <span class="comment"># disables all the APIs deprecated before Qt 6.0.0</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Default rules <span class="keyword">for</span> deployment.</span></span><br><span class="line">qnx: target.path = /tmp/$$&#123;TARGET&#125;/bin</span><br><span class="line">else: unix:!android: target.path = /opt/$$&#123;TARGET&#125;/bin</span><br><span class="line">!isEmpty(target.path): INSTALLS += target</span><br><span class="line">INCLUDEPATH += /usr/local/include/opencv2</span><br><span class="line">INCLUDEPATH += /usr/local/include/opencv</span><br><span class="line">INCLUDEPATH += /usr/local/include</span><br><span class="line">INCLUDEPATH += /home/mumu/Downloads/tf_c/tensorflow-1.8.0</span><br><span class="line">INCLUDEPATH += /usr/local/include/eigen3</span><br><span class="line"><span class="meta">#</span><span class="bash">INCLUDEPATH += /home/mumu/Downloads/tf_c/tensorflow/bazel-genfiles</span></span><br><span class="line"></span><br><span class="line">LIBS += /usr/local/lib/libtensorflow_cc.so</span><br><span class="line">LIBS += /usr/local/lib/libopencv_core.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_highgui.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_core.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_highgui.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_calib3d.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_features2d.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_flann.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_imgcodecs.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_imgproc.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_ml.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_objdetect.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_video.so.3.4</span><br><span class="line">LIBS += /usr/local/lib/libopencv_shape.so</span><br><span class="line">LIBS += /usr/local/lib/libopencv_videoio.so</span><br><span class="line"></span><br><span class="line">HEADERS += \</span><br><span class="line">    tools.h</span><br></pre></td></tr></table></figure>
+
+<p>（5）加载pb模型</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">include &lt;QGuiApplication&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;QQmlApplicationEngine&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">include<span class="string">"tools.h"</span></span></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    tensorflow::string graph = "/home/mumu/Documents/SUN/pb_test/model/test_model_n.pb";</span><br><span class="line">    tensorflow::string input_layer0 = "rgb_input:0";</span><br><span class="line">    tensorflow::string input_layer1 = "hsv_input:0";</span><br><span class="line">    tensorflow::string output_layer = "output/Softmax:0";</span><br><span class="line">    tensorflow::string file = "/home/mumu/Documents/SUN/pb_test/photo/3.png";</span><br><span class="line"></span><br><span class="line">    std::vector&lt;cv::Mat&gt; image_mat0;</span><br><span class="line">    std::vector&lt;cv::Mat&gt; image_mat1;</span><br><span class="line">    process_Image(file,image_mat0,image_mat1);</span><br><span class="line"></span><br><span class="line">    std::unique_ptr&lt;tensorflow::Session&gt; session;</span><br><span class="line">    tensorflow::Status load_graph_status = LoadGraph(graph,&amp;session);</span><br><span class="line">    if(!load_graph_status.ok())</span><br><span class="line">    &#123;</span><br><span class="line">        LOG(ERROR)&lt;&lt;load_graph_status;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tensorflow::Tensor input_tensor0 = convertMatToTensor(image_mat0);</span><br><span class="line">    tensorflow::Tensor input_tensor1 = convertMatToTensor(image_mat1);</span><br><span class="line"></span><br><span class="line">    std::vector&lt;tensorflow::Tensor&gt; outputs;</span><br><span class="line">    tensorflow::Status run_status = session-&gt;Run(&#123;&#123;input_layer0,input_tensor0&#125;,&#123;input_layer1,input_tensor1&#125;&#125;,&#123;output_layer&#125;,&#123;&#125;,&amp;outputs);</span><br><span class="line">    if(!run_status.ok())</span><br><span class="line">    &#123;</span><br><span class="line">        LOG(ERROR)&lt;&lt;"Running model failed"&lt;&lt;run_status;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    float* feature = new float[2];</span><br><span class="line">    auto outputs_map = outputs[0].flat&lt;float&gt;();</span><br><span class="line">    for(int i = 0;i&lt;2;i++)&#123;</span><br><span class="line">        feature[i] = outputs_map(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    std::cout&lt;&lt;feature[0]&lt;&lt;"    "&lt;&lt;feature[1]&lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    system("pause");</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中tools.h包含如下函数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">ifndef TOOLS_H</span></span><br><span class="line"><span class="meta">#</span><span class="bash">define TOOLS_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;highgui.hpp&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;imgproc.hpp&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;fstream&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;vector&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;utility&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;iostream&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;string&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">include<span class="string">"tensorflow/core/public/session.h"</span></span></span><br><span class="line"></span><br><span class="line">tensorflow::Status LoadGraph(const tensorflow::string&amp; graph_file_name,std::unique_ptr&lt;tensorflow::Session&gt;* session);</span><br><span class="line">tensorflow::Tensor convertMatToTensor(std::vector&lt;cv::Mat&gt; images);</span><br><span class="line">void process_Image(tensorflow::string file,std::vector&lt;cv::Mat&gt; &amp;image_mat0,std::vector&lt;cv::Mat&gt; &amp;image_mat1);</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">endif // TOOLS_H</span></span><br></pre></td></tr></table></figure>
+
+<p>具体实现在tools.cpp中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">include <span class="string">"tools.h"</span></span></span><br><span class="line"></span><br><span class="line">tensorflow::Status LoadGraph(const tensorflow::string&amp; graph_file_name,std::unique_ptr&lt;tensorflow::Session&gt;* session)</span><br><span class="line">&#123;</span><br><span class="line">    tensorflow::GraphDef graph_def;</span><br><span class="line">    tensorflow::Status load_graph_status = ReadBinaryProto(tensorflow::Env::Default(),graph_file_name,&amp;graph_def);</span><br><span class="line">    if(!load_graph_status.ok())</span><br><span class="line">    &#123;</span><br><span class="line">        return tensorflow::errors::NotFound("Failed to load compute graph ");</span><br><span class="line">    &#125;</span><br><span class="line">    session-&gt;reset(tensorflow::NewSession(tensorflow::SessionOptions()));</span><br><span class="line">    tensorflow::Status session_create_status = (*session)-&gt;Create(graph_def);</span><br><span class="line">    if(!session_create_status.ok())</span><br><span class="line">    &#123;</span><br><span class="line">        return session_create_status;</span><br><span class="line">    &#125;</span><br><span class="line">    return tensorflow::Status::OK();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tensorflow::Tensor convertMatToTensor(std::vector&lt;cv::Mat&gt; images)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    int width = images[0].cols;</span><br><span class="line">    int height = images[0].cols;</span><br><span class="line">    int channel = images[0].channels();</span><br><span class="line">    tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,tensorflow::TensorShape(&#123;(int64)images.size(),height,width,channel&#125;));</span><br><span class="line">    auto input_tensor_map = input_tensor.tensor&lt;float,4&gt;();</span><br><span class="line"></span><br><span class="line">    const float* source_row;</span><br><span class="line">    const float* source_pixel;</span><br><span class="line">    const float* source_value;</span><br><span class="line"></span><br><span class="line">    for(int i= 0;i&lt;images.size();i++)&#123;</span><br><span class="line">        for(int y=0;y&lt;height;y++)&#123;</span><br><span class="line">            source_row = (float*)images[i].data + (y*width*channel);</span><br><span class="line">            for(int x = 0;x&lt;width;x++)&#123;</span><br><span class="line">                source_pixel = source_row + (x*channel);</span><br><span class="line">                for(int c = 0;c&lt;channel;c++)&#123;</span><br><span class="line">                    source_value = source_pixel + c;</span><br><span class="line">                    input_tensor_map(i,y,x,c) = *source_value;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return input_tensor;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void process_Image(tensorflow::string file,std::vector&lt;cv::Mat&gt; &amp;image_mat0,std::vector&lt;cv::Mat&gt; &amp;image_mat1)</span><br><span class="line">&#123;</span><br><span class="line">    cv::Mat image0;</span><br><span class="line">    cv::Mat image1;</span><br><span class="line">    cv::Mat image = cv::imread(file);//读取图片到mat矩阵中</span><br><span class="line"></span><br><span class="line">    cv::resize(image,image,cv::Size(224,224));//resize(InputArray src, OutputArray dst, Size dsize)</span><br><span class="line"></span><br><span class="line">    cv::Mat image_input0(image.rows,image.cols,CV_32F);//创建两个float型Mat图像</span><br><span class="line">    cv::Mat image_input1(image.rows,image.cols,CV_32F);</span><br><span class="line"></span><br><span class="line">    cv::cvtColor(image,image0,CV_BGR2RGB);//将image(BGR)转为image0(RGB)</span><br><span class="line">    cv::cvtColor(image,image1,CV_BGR2HSV);//将image(BGR)转为image1(HSV)</span><br><span class="line"></span><br><span class="line">    image0.convertTo(image_input0,CV_32F,1/255.0);//归一化</span><br><span class="line">    image1.convertTo(image_input1,CV_32F,1/255.0);</span><br><span class="line"></span><br><span class="line">    image_mat0.push_back(image_input0);</span><br><span class="line">    image_mat1.push_back(image_input1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行main函数，最终得到结果</p>
+<p><img src="/2019/12/11/ubuntu%E7%94%A8QT%E8%B0%83%E7%94%A8pb/1.png" alt></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/28/Windows%E4%B8%8BQT%E8%B0%83%E7%94%A8pb%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2019-11-28T12:37:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/28/Windows%E4%B8%8BQT%E8%B0%83%E7%94%A8pb%E6%A8%A1%E5%9E%8B/">Windows下QT调用pb模型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Qt</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Windows</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">pb</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/11/ubuntu%E7%94%A8QT%E8%B0%83%E7%94%A8pb/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/11/BoundingBox%E5%9B%9E%E5%BD%92/" class="archive-article-date">
-  	<time datetime="2019-11-11T14:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/11/ubuntu%E9%85%8D%E7%BD%AEopencv%E5%B9%B6%E7%94%A8QT%E8%B0%83%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ubuntu配置opencv并用QT调用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/11/BoundingBox%E5%9B%9E%E5%BD%92/">BoundingBox回归</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSD</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">BoundingBox</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" class="archive-article-date">
-  	<time datetime="2019-11-09T04:44:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">SSD目标检测</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSD</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/09/strlen%E4%B8%8Esizeof/" class="archive-article-date">
-  	<time datetime="2019-11-09T03:40:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/09/strlen%E4%B8%8Esizeof/">strlen与sizeof</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/09/%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2019-11-09T03:34:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/09/%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/">搭建静态博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">demo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/06/fork%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2019-11-06T14:39:12.209Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/06/fork%E5%87%BD%E6%95%B0/">fork()函数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">fork</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/06/this%E6%8C%87%E9%92%88/" class="archive-article-date">
-  	<time datetime="2019-11-06T14:13:43.047Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/06/this%E6%8C%87%E9%92%88/">C++类中的this指针</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">this指针</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -495,8 +383,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
