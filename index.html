@@ -180,37 +180,7 @@
         <h2 id="1-下载opencv安装包安装"><a href="#1-下载opencv安装包安装" class="headerlink" title="1.下载opencv安装包安装"></a>1.下载opencv安装包安装</h2><p>双击打开下载好的opencv-3.4.0-vc14_vc15.exe，选择解压路径</p>
 <p><img src="/2019/12/17/Windows%E9%85%8D%E7%BD%AEopencv/1.png" alt></p>
 <p>安装完毕后，在其安装目录下可以看到两个文件夹：build和sources。</p>
-<h2 id="2-配置环境"><a href="#2-配置环境" class="headerlink" title="2.配置环境"></a>2.配置环境</h2><p>打开电脑环境变量，在Path一栏加入安装路径</p>
-<p><img src="/2019/12/17/Windows%E9%85%8D%E7%BD%AEopencv/2.png" alt></p>
-<p>需要注意的是，x64表示64位操作系统，vc14是编译器版本，vc14对应的是visual sutio2015</p>
-<p>补充：vc8 = Visual Studio 2005，vc9 = Visual Studio 2008，vc10 = Visual Studio 2010，vc11 = Visual Studio 2012，vc12 = Visual Studio 2013，vc14 = Visual Studio 2015</p>
-<h2 id="3-visual-studio2015配置"><a href="#3-visual-studio2015配置" class="headerlink" title="3.visual studio2015配置"></a>3.visual studio2015配置</h2><p>新建一个win32控制台程序，并添加一个源文件，例如为main.cpp，结构如下：</p>
-<p><img src="/2019/12/17/Windows%E9%85%8D%E7%BD%AEopencv/3.png" alt></p>
-<p>点击工具栏中的：试图-&gt;其他窗口-&gt;属性管理器，会出现：</p>
-<p><img src="/2019/12/17/Windows%E9%85%8D%E7%BD%AEopencv/4.png" alt></p>
-<p>Debug模式为调试模式，Release模式为发布模式，这里选用Debug x64。</p>
-<p>右击Debug x64，选择添加新项目属性表，命名为opencvPropertySheet</p>
-<p><img src="/2019/12/17/Windows%E9%85%8D%E7%BD%AEopencv/5.png" alt></p>
-<p>右击opencvPropertySheet:</p>
-<ul>
-<li>在VC++目录中的包含目录中添加路径</li>
-</ul>
-<p><img src="/2019/12/17/Windows%E9%85%8D%E7%BD%AEopencv/6.png" alt></p>
-<ul>
-<li><p>在VC++目录中的库目录中添加路径</p>
-<p><img src="/2019/12/17/Windows%E9%85%8D%E7%BD%AEopencv/7.png" alt></p>
-</li>
-<li><p>在链接器-&gt;输入-&gt;附加依赖项中添加动态链接库</p>
-<p><img src="/2019/12/17/Windows%E9%85%8D%E7%BD%AEopencv/8.png" alt></p>
-<p>其中debug模式中添加opencv_worldxxxd.lib，release模式中添加opencv_world.lib</p>
-</li>
-</ul>
-<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">include &lt;iostream&gt;  </span></span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;opencv2/core/core.hpp&gt;  </span></span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;opencv2/highgui/highgui.hpp&gt;  </span></span><br><span class="line"></span><br><span class="line">using namespace cv;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	// 读入一张图片（游戏原画）    </span><br><span class="line">	Mat img = imread("pic.jpg");</span><br><span class="line">	// 创建一个名为 "游戏原画"窗口    </span><br><span class="line">	namedWindow("游戏原画");</span><br><span class="line">	// 在窗口中显示游戏原画    </span><br><span class="line">	imshow("游戏原画", img);</span><br><span class="line">	// 等待6000 ms后窗口自动关闭    </span><br><span class="line">	waitKey(6000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2019/12/17/Windows%E9%85%8D%E7%BD%AEopencv/9.png" alt></p>
-<p>最终显示结果：</p>
-<p><img src="/2019/12/17/Windows%E9%85%8D%E7%BD%AEopencv/10.png" alt></p>
-
+        
       
 
       
@@ -633,15 +603,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Windows</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
         		</li>
       		
 		</ul>
@@ -718,11 +688,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSD</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSD</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -803,15 +773,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSD</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
         		</li>
       		
 		</ul>
@@ -1111,6 +1081,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SSD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">BoundingBox</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Windows</a>
               </li>
              
@@ -1119,7 +1109,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
+                <a href="javascript:void(0)" class="js-tag color5">fork</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1127,7 +1117,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSD</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1135,19 +1125,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">BoundingBox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
+                <a href="javascript:void(0)" class="js-tag color2">this指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1164,14 +1142,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">demo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">fork</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
             
             <div class="clearfix"></div>
