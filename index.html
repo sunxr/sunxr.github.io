@@ -179,35 +179,7 @@
       
         <p>基本环境：qt-5.8.0</p>
 <p>项目名称：client</p>
-<ul>
-<li><p>在release模式下编译源文件，得到文件夹<strong>build-client-Desktop_Qt_5_8_0_GCC_64bit-Release</strong>，以及该文件夹下的可执行目标文件<strong>client</strong></p>
-<p><img src="/2020/10/18/ubuntu%E6%89%93%E5%8C%85QT/1.png" alt></p>
-<p><img src="/2020/10/18/ubuntu%E6%89%93%E5%8C%85QT/2.png" alt></p>
-</li>
-<li><p>新建一个文件夹<strong>clientPack</strong>，将可执行目标文件<strong>client</strong>拷贝到新文件夹中，此时<strong>clientPack</strong>文件夹中包含一个可执行文件<strong>client</strong></p>
-<p><img src="/2020/10/18/ubuntu%E6%89%93%E5%8C%85QT/3.png" alt></p>
-</li>
-<li><p>在<strong>clientPack</strong>文件夹中新建一个脚本文件<strong>pack.sh</strong>，用来提取项目所需要的链接库文件，内容如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh </span><br><span class="line">exe=<span class="string">"client"</span> #你需要发布的程序名称 </span><br><span class="line">des=<span class="string">"/home/mumu/Documents/SUN/kxFaceDetect/Client/clientPack"</span> #创建文件夹的位置 </span><br><span class="line">deplist=$(ldd $exe | awk  '&#123;if (match($3,"/"))&#123; printf("%s "),$3 &#125; &#125;') </span><br><span class="line">cp $deplist $des</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在<strong>clientPack</strong>文件夹中新建一个脚本文件<strong>client.sh</strong>，内容如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh </span><br><span class="line">appname=`basename $<span class="number">0</span> | sed s,\.sh$,,` </span><br><span class="line">dirname=`dirname $<span class="number">0</span>` </span><br><span class="line">tmp=<span class="string">"$&#123;dirname#?&#125;"</span> </span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"$&#123;dirname%$tmp&#125;"</span> != <span class="string">"/"</span> ]; then </span><br><span class="line">dirname=$PWD/$dirname </span><br><span class="line">fi </span><br><span class="line">LD_LIBRARY_PATH=$dirname </span><br><span class="line"><span class="keyword">export</span> LD_LIBRARY_PATH </span><br><span class="line">$dirname/$appname <span class="string">"$@"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>赋予<strong>pack.sh</strong>和<strong>client.sh</strong>权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 pack.sh</span><br><span class="line">chmod 777 client.sh</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行<strong>pack.sh</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./pack.sh</span><br></pre></td></tr></table></figure>
-
-<p>将得到项目所依赖的库</p>
-<p><img src="/2020/10/18/ubuntu%E6%89%93%E5%8C%85QT/4.png" alt></p>
-</li>
-<li><p>执行<strong>client.sh</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./client.sh</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-
+        
       
 
       
@@ -298,11 +270,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">swig</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">swig</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
         		</li>
       		
 		</ul>
@@ -376,11 +348,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cmake</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cmake</a>
         		</li>
       		
 		</ul>
@@ -956,11 +928,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
         		</li>
       		
 		</ul>
@@ -1121,23 +1093,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,6 +1114,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">swig</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
               </li>
              
               <li class="article-tag-list-item">
