@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>阿木木</title>
+  <title>观察者模式 | 阿木木</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="武汉大学计算机学院在读硕士">
-<meta property="og:type" content="website">
-<meta property="og:title" content="阿木木">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;2&#x2F;index.html">
+  <meta name="description" content="一、概述观察者模式定义了对象之间的一种一对多的依赖关系，让一个对象的改变能够影响多个其他对象。在观察者模式中，发生改变的对象称为观察目标，被通知的对象称为观察者，一个观察目标可以对应多个观察者，而且这些观察者之间可以没有任何相互联系，可以根据需要增加和删除观察者使得系统更易于扩展。">
+<meta name="keywords" content="设计模式,观察者模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="观察者模式">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;05&#x2F;%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="阿木木">
-<meta property="og:description" content="武汉大学计算机学院在读硕士">
+<meta property="og:description" content="一、概述观察者模式定义了对象之间的一种一对多的依赖关系，让一个对象的改变能够影响多个其他对象。在观察者模式中，发生改变的对象称为观察目标，被通知的对象称为观察者，一个观察目标可以对应多个观察者，而且这些观察者之间可以没有任何相互联系，可以根据需要增加和删除观察者使得系统更易于扩展。">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;05&#x2F;%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F&#x2F;1.png">
+<meta property="og:updated_time" content="2021-09-05T11:47:56.271Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;05&#x2F;%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F&#x2F;1.png">
   
     <link rel="alternative" href="/atom.xml" title="阿木木" type="application/atom+xml">
   
@@ -155,458 +159,105 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-ubuntu编译tensorflow" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-观察者模式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/04/ubuntu%E7%BC%96%E8%AF%91tensorflow/">ubuntu编译tensorflow</a>
+    <h1 class="article-title" itemprop="name">
+      观察者模式
     </h1>
   
 
         
-        <a href="/2019/12/04/ubuntu%E7%BC%96%E8%AF%91tensorflow/" class="archive-article-date">
-  	<time datetime="2019-12-04T15:47:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
+        <a href="/2021/09/05/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-09-05T11:39:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="ubuntu编译tensorflow"><a href="#ubuntu编译tensorflow" class="headerlink" title="ubuntu编译tensorflow"></a>ubuntu编译tensorflow</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
-<li>Ubuntu-16.04（内存8G起步）</li>
-<li>tensorflow-1.8.0（CPU版）</li>
-<li>protobuf-3.5.0</li>
-<li>gcc-4.8以上</li>
-<li>bazel-0.18.0</li>
-<li>python-2.7/3.5</li>
+        <h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>观察者模式定义了对象之间的一种一对多的依赖关系，让一个对象的改变能够影响多个其他对象。在观察者模式中，发生改变的对象称为观察目标，被通知的对象称为观察者，一个观察目标可以对应多个观察者，而且这些观察者之间可以没有任何相互联系，可以根据需要增加和删除观察者使得系统更易于扩展。</p>
+<a id="more"></a>
+
+<p>观察者模式是一种对象行为型模式，别名包括发布-订阅模式、模型-视图模式、源-监听器模式或从属者模式，结构图为：</p>
+<p><img src="/2021/09/05/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/1.png" alt></p>
+<p>观察目标是通知的发布者，它发出通知时并不需要知道谁是它的观察者，可以有任意数目的观察者订阅它并接收通知。</p>
+<h2 id="二、代码设计"><a href="#二、代码设计" class="headerlink" title="二、代码设计"></a>二、代码设计</h2><p>观察者模式包括一个抽象目标Subject、具体目标类ConcreteSubject、抽象观察者Observer以及具体的观察者ConcreteObserver。</p>
+<p>Subject类典型代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> ArrayList&lt;Observer&gt; observers = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//注册方法</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attach</span><span class="params">(Observer observer)</span> </span>&#123;</span><br><span class="line">    observers.add(observer);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//注销方法</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">detach</span><span class="params">(Observer observer)</span> </span>&#123;</span><br><span class="line">    observers.remove(observer);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//声明抽象方法</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">notify</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体目标类ConcreteSubject是实现了抽象目标类Subject的一个具体子类，典型代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteSubject</span> <span class="keyword">extends</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">  <span class="comment">//实现通知方法</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notify</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Observer observer:observers) &#123;</span><br><span class="line">      observer.update();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>抽象观察者一般为一个接口，通常只声明一个update()方法，为不同观察者的响应行为定义相同的接口，该方法在其子类中实现，不同的观察者具有不同的响应方法，抽象观察者Observer典型代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体的观察者ConcreteObserver实现了update()方法，其典型代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteObserver</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//做具体响应</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">可以直接使用Observer接口和Observable类来作为观察者模式的抽象层，再自定义具体观察者类和具体观察目标类。</font></p>
+<h2 id="三、demo"><a href="#三、demo" class="headerlink" title="三、demo"></a>三、demo</h2><p>设计一个股票系统，当股票变化超过5个百分点时，通知所有的股民。</p>
+<p>抽象目标Subject类设计如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MySubject</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> ArrayList&lt;MyObserver&gt; observerArrayList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attach</span><span class="params">(MyObserver observer)</span> </span>&#123;</span><br><span class="line">        observerArrayList.add(observer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(MyObserver observer)</span> </span>&#123;</span><br><span class="line">        observerArrayList.remove(observer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyStockChange</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体目标类ConcreteSubject设计如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StockChangeListener</span> <span class="keyword">extends</span> <span class="title">MySubject</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> changeRate;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StockChangeListener</span><span class="params">(<span class="keyword">int</span> changeRate)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.changeRate = changeRate;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyStockChange</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(changeRate &gt; <span class="number">5</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (MyObserver observer : observerArrayList) &#123;</span><br><span class="line">                observer.response(changeRate);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"波动很小"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>抽象观察者Observer类设计如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyObserver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">response</span><span class="params">(<span class="keyword">int</span> newValue)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体观察者类ConcreteObserver设计如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StockerSun</span> <span class="keyword">implements</span> <span class="title">MyObserver</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">response</span><span class="params">(<span class="keyword">int</span> newValue)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"sun get, the change rate is : "</span> + newValue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StockerTian</span> <span class="keyword">implements</span> <span class="title">MyObserver</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">response</span><span class="params">(<span class="keyword">int</span> newValue)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"tian get, the change rate is : "</span> + newValue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体调用如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">  MySubject subject1 = <span class="keyword">new</span> StockChangeListener(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  MyObserver observerSun = <span class="keyword">new</span> StockerSun();</span><br><span class="line">  MyObserver observerTian = <span class="keyword">new</span> StockerTian();</span><br><span class="line"></span><br><span class="line">  subject1.attach(observerSun);</span><br><span class="line">  subject1.attach(observerTian);</span><br><span class="line"></span><br><span class="line">  subject1.notifyStockChange();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  MySubject subject2 = <span class="keyword">new</span> StockChangeListener(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">  MyObserver observerSun2 = <span class="keyword">new</span> StockerSun();</span><br><span class="line">  MyObserver observerTian2 = <span class="keyword">new</span> StockerTian();</span><br><span class="line"></span><br><span class="line">  subject2.attach(observerSun2);</span><br><span class="line">  subject2.attach(observerTian2);</span><br><span class="line"></span><br><span class="line">  subject2.notifyStockChange();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、应用"><a href="#四、应用" class="headerlink" title="四、应用"></a>四、应用</h2><p>观察者模式应用了MVC架构，包含Model、View、以及Controller，其中Model为观察目标，View为观察者，Controller为两者之间的中介。当Model层的数据发生改变时，View层将自动改变其显示内容。</p>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><h3 id="1-优点"><a href="#1-优点" class="headerlink" title="1. 优点"></a>1. 优点</h3><ul>
+<li>观察者模式可以实现表示层和数据逻辑层的分离，定义了稳定的消息更新传递机制，并抽象了更新接口，使得可以有各种各样不同的表示层充当具体观察者角色。</li>
+<li>观察者模式在观察目标和观察者之间建立一个抽象的耦合。观察目标只需要维持一个抽象观察者的集合，无须了解其具体观察者。由于观察目标和观察者没有紧密地耦合在一起，因此它们可以属于不同的抽象化层次。</li>
+<li>观察者模式支持广播通信，观察目标会向所有已注册的观察者对象发送通知，简化了一对多系统设计的难度。</li>
+<li>观察者模式满足“开闭原则”的要求，增加新的具体观察者无须修改原有系统代码，在具体观察者与观察目标之间不存在关联关系的情况下，增加新的观察目标也很方便。</li>
 </ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/04/ubuntu%E7%BC%96%E8%AF%91tensorflow/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Windows下QT调用pb模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/28/Windows%E4%B8%8BQT%E8%B0%83%E7%94%A8pb%E6%A8%A1%E5%9E%8B/">Windows下QT调用pb模型</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/28/Windows%E4%B8%8BQT%E8%B0%83%E7%94%A8pb%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2019-11-28T12:37:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>​         课题组需要开发一个人脸识别加人脸防伪的系统，而现在很多识别模型和防伪模型都是基于深度学习训练出来的，常见的tensorflow框架可以训练模型生成pb文件，由于整个系统的客户端是在基于QT来编写的，因此需要用C++来编译tensorflow，得到可以供C++调用的动态链接库tensorflow.dll，然后通过包含动态链接库才能调用训练好的pb模型。  </p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tensorflow</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Windows</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/28/Windows%E4%B8%8BQT%E8%B0%83%E7%94%A8pb%E6%A8%A1%E5%9E%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-BoundingBox回归" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/11/BoundingBox%E5%9B%9E%E5%BD%92/">BoundingBox回归</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/11/BoundingBox%E5%9B%9E%E5%BD%92/" class="archive-article-date">
-  	<time datetime="2019-11-11T14:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>通俗的理解，Region Proposal与Ground Truth之间总会存在误差，因此需要对Region Proposal进行微调，而BoundingBox回归就是用来微调这个窗口的。</p>
-<h2 id="Bounding-Box"><a href="#Bounding-Box" class="headerlink" title="Bounding Box"></a>Bounding Box</h2><p>对于一个窗口，一般使用四维向量(x,y,w,h)来表示，分别表示窗口的中心点坐标以及宽高。如下图所示，P代表原始的Proposal，G代表Ground Truth，我们的目标是寻找一种关系使得P经过映射得到一个与G更接近的回归窗口<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{G}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{G}" title="\hat{G}"></a>。</p>
-<p><img src="/2019/11/11/BoundingBox%E5%9B%9E%E5%BD%92/1.png" alt></p>
-<p>BoundingBox回归的目的：给定<a href="https://www.codecogs.com/eqnedit.php?latex=(P_x,P_y,P_w,P_h)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(P_x,P_y,P_w,P_h)" title="(P_x,P_y,P_w,P_h)"></a>，寻找一种映射<a href="https://www.codecogs.com/eqnedit.php?latex=f" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f" title="f"></a>，使得<a href="https://www.codecogs.com/eqnedit.php?latex=f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})" title="f(P_x,P_y,P_w,P_h)=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})"></a>，并且<a href="https://www.codecogs.com/eqnedit.php?latex=(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})\approx(G_x,G_y,G_w,G_h)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})\approx(G_x,G_y,G_w,G_h)" title="(\hat{G_x},\hat{G_y},\hat{G_w},\hat{G_h})\approx(G_x,G_y,G_w,G_h)"></a></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSD</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">BoundingBox</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/11/BoundingBox%E5%9B%9E%E5%BD%92/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SSD目标检测" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">SSD目标检测</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" class="archive-article-date">
-  	<time datetime="2019-11-09T04:44:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>论文地址:<a href="https://arxiv.org/abs/1512.02325" target="_blank" rel="noopener">https://arxiv.org/abs/1512.02325</a></p>
-<p>源码:<a href="https://github.com/weiliu89/caffe/tree/ssd" target="_blank" rel="noopener">https://github.com/weiliu89/caffe/tree/ssd</a></p>
-</blockquote>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSD</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/09/SSD%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-strlen与sizeof" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/09/strlen%E4%B8%8Esizeof/">strlen与sizeof</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/09/strlen%E4%B8%8Esizeof/" class="archive-article-date">
-  	<time datetime="2019-11-09T03:40:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font color="red">strlen</font>是用来计算字符串的长度，遇到第一个NULL（‘\0’）为止，不包括’\0’</p>
-<p><font color="red">sizeof</font>是用来计算变量或者对象、类型所占字节的多少</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/09/strlen%E4%B8%8Esizeof/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-搭建静态博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/09/%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/">搭建静态博客</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/09/%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2019-11-09T03:34:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>在开始之前，你必须已经：</p>
-<ul>
-<li><p>有一个github账号，没有的话可以注册一个；</p>
-</li>
-<li><p>安装了node.js、npm</p>
-</li>
-<li><p>安装了git for windows</p>
-</li>
+<h3 id="2-缺点"><a href="#2-缺点" class="headerlink" title="2. 缺点"></a>2. 缺点</h3><ul>
+<li>如果一个观察目标对象有很多直接和间接观察者，将所有的观察者都通知到会花费很多时间。</li>
+<li>如果在观察者和观察目标之间存在循环依赖，观察目标会触发它们之间进行循环调用，可能导致系统崩溃。</li>
+<li>观察者模式没有相应的机制让观察者知道所观察的目标对象是怎么发生变化的，而仅仅只是知道观察目标发生了变化。</li>
 </ul>
-<p>本文所使用的环境：</p>
-<ul>
-<li>Windows10</li>
-<li><a href="mailto:node.js@12.13.0" target="_blank" rel="noopener">node.js@12.13.0</a></li>
-<li><a href="mailto:git@2.23.0" target="_blank" rel="noopener">git@2.23.0</a></li>
-<li><a href="mailto:hexo@4.0.0" target="_blank" rel="noopener">hexo@4.0.0</a></li></ul>
-        
+<h3 id="3-适用场景"><a href="#3-适用场景" class="headerlink" title="3. 适用场景"></a>3. 适用场景</h3><ul>
+<li>一个抽象模型有两个方面，其中一个方面依赖于另一个方面，将这两个方面封装在独立的对象中使它们可以各自独立地改变和复用。</li>
+<li>一个对象的改变将导致一个或多个其他对象也发生改变，而并不知道具体有多少对象将发生改变，也不知道这些对象是谁。</li>
+<li>需要在系统中创建一个触发链，A对象的行为将影响B对象，B对象的行为将影响C对象……，可以使用观察者模式创建一种链式触发机制。</li>
+</ul>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -617,7 +268,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">demo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">观察者模式</a>
         		</li>
       		
 		</ul>
@@ -626,16 +281,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/09/%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/09/05/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2021/09/05/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          装饰模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/18/ubuntu%E6%89%93%E5%8C%85QT/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ubuntu打包QT</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -655,180 +378,14 @@
 
 
 
-
-  
-    <article id="post-fork函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/06/fork%E5%87%BD%E6%95%B0/">fork()函数</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/06/fork%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2019-11-06T14:39:12.209Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在linux系统内，使用fork()函数创建子进程。</p>
-<p><strong>fork()函数调用一次会得到两个返回值</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">fork</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/06/fork%E5%87%BD%E6%95%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-this指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/06/this%E6%8C%87%E9%92%88/">C++类中的this指针</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/06/this%E6%8C%87%E9%92%88/" class="archive-article-date">
-  	<time datetime="2019-11-06T14:13:43.047Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>如题：下面程序段包含4个函数，其中具有隐含this指针的是()</p>
-<p>int <font color="red">f1</font>();</p>
-<p>class T</p>
-<p>{</p>
-<p>public :static int <font color="red">f2</font>();</p>
-<p>private :friend int <font color="red">f3</font>();</p>
-<p>protected :int <font color="red">f4</font>();</p>
-<p>}</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">this指针</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/06/this%E6%8C%87%E9%92%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -851,8 +408,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
