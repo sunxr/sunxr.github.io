@@ -62,7 +62,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;08&#x2F;git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C&#x2F;41.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;08&#x2F;git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C&#x2F;42.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;08&#x2F;git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C&#x2F;43.png">
-<meta property="og:updated_time" content="2021-09-08T14:37:15.241Z">
+<meta property="og:updated_time" content="2021-09-09T14:06:37.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;08&#x2F;git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C&#x2F;1.png">
   
@@ -293,7 +293,7 @@
 <p><img src="/2021/09/08/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/22.png" alt></p>
 <p>此时目前所在的分支bugFix也会跟着移动到复制后的分支节点C4’上。</p>
 <p>执行命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout main;git rebase bugFix;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout main;</span><br><span class="line">git rebase bugFix;</span><br></pre></td></tr></table></figure>
 
 <p>将main分支合并到bugFix分支。</p>
 <h2 id="6-HEAD"><a href="#6-HEAD" class="headerlink" title="6. HEAD"></a>6. HEAD</h2><p>HEAD总是指向当前分支上最近一次提交记录。</p>
@@ -377,7 +377,7 @@
 <li>进行修改后commit</li>
 <li>最后再cherry-pick分支caption</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout maingit cherry-pick C2</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git cherry-pick C2</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2021/09/08/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/28.png" alt></p>
 <p>修改代码并commit</p>
@@ -395,7 +395,7 @@
 
 <p><img src="/2021/09/08/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/32.png" alt></p>
 <p>同理，将side分支和another分支合并</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase bugFix sidegit rebase side another</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rebase bugFix side</span><br><span class="line">git rebase side another</span><br></pre></td></tr></table></figure>
 
 <p>最后更新main分支（main是another的父节点）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase another main</span><br></pre></td></tr></table></figure>
@@ -432,7 +432,7 @@
 
 <p><img src="/2021/09/08/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/40.png" alt></p>
 <p>进行本地分支的合并</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase o/main side1git rebase side1 side2git rebase side2 side3</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rebase o/main side1</span><br><span class="line">git rebase side1 side2</span><br><span class="line">git rebase side2 side3</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2021/09/08/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/41.png" alt></p>
 <p>合并main分支</p>
@@ -713,31 +713,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">opencv</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -753,11 +737,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">swig</a>
+                <a href="javascript:void(0)" class="js-tag color2">opencv</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">this指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">swig</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,15 +765,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">pb</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">工厂方法模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">建造者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">工厂方法模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -789,7 +789,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">抽象工厂模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -797,19 +797,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">装饰模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">建造者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">策略模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">抽象工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">装饰模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">面向对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
               </li>
             
             <div class="clearfix"></div>
