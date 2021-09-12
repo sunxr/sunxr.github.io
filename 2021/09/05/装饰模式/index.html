@@ -18,7 +18,8 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;05&#x2F;%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F&#x2F;1.jpg">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;05&#x2F;%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F&#x2F;2.png">
-<meta property="og:updated_time" content="2021-09-05T11:47:43.088Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;05&#x2F;%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F&#x2F;2.jpg">
+<meta property="og:updated_time" content="2021-09-12T08:07:36.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;05&#x2F;%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F&#x2F;1.jpg">
   
@@ -184,7 +185,8 @@
 <a id="more"></a>
 
 <p>装饰模式结构图如下图所示：</p>
-<p><img src="/2021/09/05/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/1.jpg" alt></p>
+<img src="/2021/09/05/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/1.jpg" style="zoom:35%;">
+
 <h2 id="二、代码设计"><a href="#二、代码设计" class="headerlink" title="二、代码设计"></a>二、代码设计</h2><p>装饰模式的核心在于抽象装饰类Decorator的设计，典型代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> <span class="keyword">implements</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Component component;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Decorator</span><span class="params">(Component component)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.component = component;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.operation();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -201,7 +203,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Component c,cd;</span><br><span class="line">c = <span class="keyword">new</span> ConcreteComponent();</span><br><span class="line">cd = <span class="keyword">new</span> ConcreteDecorator(c);</span><br></pre></td></tr></table></figure>
 
 <p>另外，如果只有一个ConcretComponent类，那么抽象Decorator类可以作为改ConcretComponent类的直接子类，其unl图如下图所示：</p>
-<p><img src="/2021/09/05/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/2.png" alt></p>
+<img src="/2021/09/05/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/2.png" style="zoom:30%;">
+
 <h2 id="四、demo"><a href="#四、demo" class="headerlink" title="四、demo"></a>四、demo</h2><p>设计一个加密算法，首先对原始密码进行简单加密，接着对简单加密过后的密码进行额外的复杂加密工作。</p>
 <p>component接口如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cipher</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">encrypt</span><span class="params">(String text)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -219,6 +222,9 @@
 
 <p>具体的调用如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">  String password = <span class="string">"sunxinrong"</span>;</span><br><span class="line">  String enPassword;</span><br><span class="line">  Cipher sc,cc,ac;</span><br><span class="line"></span><br><span class="line">  sc = <span class="keyword">new</span> SimpleCipher();</span><br><span class="line">  enPassword = sc.encrypt(password);</span><br><span class="line">  System.out.println(enPassword);</span><br><span class="line">  System.out.println(<span class="string">"-----------"</span>);</span><br><span class="line"></span><br><span class="line">  cc = <span class="keyword">new</span> ComplexCipher(sc);</span><br><span class="line">  enPassword = cc.encrypt(password);</span><br><span class="line">  System.out.println(enPassword);</span><br><span class="line">  System.out.println(<span class="string">"------------"</span>);</span><br><span class="line"></span><br><span class="line">  ac = <span class="keyword">new</span> AdvancedCipher(cc);</span><br><span class="line">  enPassword = ac.encrypt(password);</span><br><span class="line">  System.out.println(enPassword);</span><br><span class="line">  System.out.println(<span class="string">"------------"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<img src="/2021/09/05/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/2.jpg" style="zoom:50%;">
 
 <h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><h3 id="1-优点"><a href="#1-优点" class="headerlink" title="1. 优点"></a>1. 优点</h3><ul>
 <li>对于扩展一个对象的功能，装饰模式比继承更加灵活性，不会导致类的个数急剧增加。</li>
@@ -484,11 +490,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSD</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSD</a>
+                <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,23 +514,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Windows</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">opencv</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +538,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">opencv</a>
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,7 +554,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">QT</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,7 +562,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">QT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,14 +582,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">外观模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">函数指针</a>
               </li>
              
@@ -596,11 +594,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">建造者模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">demo</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,11 +602,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">外观模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">demo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">建造者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">组合模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">策略模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">装饰模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,7 +634,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">策略模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,10 +643,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">面向对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">装饰模式</a>
               </li>
             
             <div class="clearfix"></div>

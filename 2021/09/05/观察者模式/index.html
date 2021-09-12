@@ -17,7 +17,8 @@
 <meta property="og:description" content="一、概述观察者模式定义了对象之间的一种一对多的依赖关系，让一个对象的改变能够影响多个其他对象。在观察者模式中，发生改变的对象称为观察目标，被通知的对象称为观察者，一个观察目标可以对应多个观察者，而且这些观察者之间可以没有任何相互联系，可以根据需要增加和删除观察者使得系统更易于扩展。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;05&#x2F;%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F&#x2F;1.png">
-<meta property="og:updated_time" content="2021-09-05T11:47:56.271Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;05&#x2F;%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F&#x2F;1.jpg">
+<meta property="og:updated_time" content="2021-09-12T08:05:07.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;09&#x2F;05&#x2F;%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F&#x2F;1.png">
   
@@ -183,7 +184,8 @@
 <a id="more"></a>
 
 <p>观察者模式是一种对象行为型模式，别名包括发布-订阅模式、模型-视图模式、源-监听器模式或从属者模式，结构图为：</p>
-<p><img src="/2021/09/05/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/1.png" alt></p>
+<img src="/2021/09/05/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/1.png" style="zoom:80%;">
+
 <p>观察目标是通知的发布者，它发出通知时并不需要知道谁是它的观察者，可以有任意数目的观察者订阅它并接收通知。</p>
 <h2 id="二、代码设计"><a href="#二、代码设计" class="headerlink" title="二、代码设计"></a>二、代码设计</h2><p>观察者模式包括一个抽象目标Subject、具体目标类ConcreteSubject、抽象观察者Observer以及具体的观察者ConcreteObserver。</p>
 <p>Subject类典型代码如下：</p>
@@ -216,6 +218,9 @@
 
 <p>具体调用如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">  MySubject subject1 = <span class="keyword">new</span> StockChangeListener(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  MyObserver observerSun = <span class="keyword">new</span> StockerSun();</span><br><span class="line">  MyObserver observerTian = <span class="keyword">new</span> StockerTian();</span><br><span class="line"></span><br><span class="line">  subject1.attach(observerSun);</span><br><span class="line">  subject1.attach(observerTian);</span><br><span class="line"></span><br><span class="line">  subject1.notifyStockChange();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  MySubject subject2 = <span class="keyword">new</span> StockChangeListener(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">  MyObserver observerSun2 = <span class="keyword">new</span> StockerSun();</span><br><span class="line">  MyObserver observerTian2 = <span class="keyword">new</span> StockerTian();</span><br><span class="line"></span><br><span class="line">  subject2.attach(observerSun2);</span><br><span class="line">  subject2.attach(observerTian2);</span><br><span class="line"></span><br><span class="line">  subject2.notifyStockChange();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<img src="/2021/09/05/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/1.jpg" style="zoom:50%;">
 
 <h2 id="四、应用"><a href="#四、应用" class="headerlink" title="四、应用"></a>四、应用</h2><p>观察者模式应用了MVC架构，包含Model、View、以及Controller，其中Model为观察目标，View为观察者，Controller为两者之间的中介。当Model层的数据发生改变时，View层将自动改变其显示内容。</p>
 <h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><h3 id="1-优点"><a href="#1-优点" class="headerlink" title="1. 优点"></a>1. 优点</h3><ul>
@@ -484,11 +489,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSD</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSD</a>
+                <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,23 +513,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Windows</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">opencv</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +537,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">opencv</a>
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,7 +553,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">QT</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,7 +561,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">QT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,14 +581,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">外观模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">函数指针</a>
               </li>
              
@@ -596,11 +593,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">建造者模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">demo</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,11 +601,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">外观模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">demo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">建造者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">组合模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">策略模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">装饰模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,7 +633,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">策略模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,10 +642,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">面向对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">装饰模式</a>
               </li>
             
             <div class="clearfix"></div>
